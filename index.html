@@ -140,6 +140,39 @@
             transform: translateX(25px);
         }
 
+        /* Icons for the toggle */
+        .toggle-switch .toggle-icon {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            font-size: 16px;
+            color: #beadad; /* Adjust based on your theme */
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .sun-icon {
+            opacity: 1;
+            transform: translateX(12px); /* Position the sun on the left */
+        }
+
+        .moon-icon {
+            opacity: 0;
+            transform: translateX(-12px); /* Position the moon on the right */
+        }
+
+        .toggle-switch input:checked + span .sun-icon {
+            opacity: 0;
+            transform: translateX(12px); /* Move out of view */
+        }
+
+        .toggle-switch input:checked + span .moon-icon {
+            opacity: 1;
+            transform: translateX(-12px); /* Move into view */
+        }
+
         /* Waveform container */
         .waveform-container {
             flex-grow: 1; /* Allow the waveform container to expand and shrink */
@@ -196,13 +229,13 @@
 
         @keyframes blink-orange {
             0% {
-                box-shadow: 0 0 4px 4px rgba(255, 165, 0, 0.6);
-            }
-            50% {
                 box-shadow: 0 0 4px 4px rgba(255, 165, 0, 0);
             }
-            100% {
+            50% {
                 box-shadow: 0 0 4px 4px rgba(255, 165, 0, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 4px 4px rgba(255, 165, 0, 0);
             }
         }
 
@@ -230,12 +263,12 @@
             --header-color: #000;
             --footer-bg: #f8f9fa;
             --footer-color: #000;
-            --switch-bg: #ccc;
-            --switch-bg-checked: #4caf50;
+            --switch-bg: #5e0a3e;
+            --switch-bg-checked: #5e0a3e;
             --switch-handle-bg: #fff;
             --body-bg: #fff;
             --body-color: #000;
-            --hover-color: #4caf50;
+            --hover-color: #775f6e;
         }
 
         /* Dark mode styles */
@@ -244,12 +277,12 @@
             --header-color: #fff;
             --footer-bg: #333;
             --footer-color: #fff;
-            --switch-bg: #666;
-            --switch-bg-checked: #81c784;
+            --switch-bg: #5e0a3e;
+            --switch-bg-checked: #5e0a3e;
             --switch-handle-bg: #333;
             --body-bg: #121212;
             --body-color: #fff;
-            --hover-color: #4caf50;
+            --hover-color: #775f6e;
         }
 
         /* General body styles */
@@ -263,7 +296,7 @@
 <body class="dark-mode">
     <header class="header">
         <div class="social-links">
-            <a href="https://soundcloud.com" target="_blank" title="SoundCloud"><i class="fab fa-soundcloud"></i></a>
+            <!-- <a href="https://soundcloud.com" target="_blank" title="SoundCloud"><i class="fab fa-soundcloud"></i></a> -->
             <a href="https://github.com/mdoran3" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
             <a href="www.linkedin.com/in/mitchell-d-9aa0b0262" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
@@ -271,10 +304,13 @@
             <h6>Mitchell D.</h6>
             <p>Software & Audio Engineer</p>
         </div>
-        <!-- Toggle Switch -->
+       <!-- Toggle Switch -->
         <label class="toggle-switch">
-            <input type="checkbox" id="modeToggle" checked> <!-- Checkbox starts checked -->
-            <span></span>
+            <input type="checkbox" id="modeToggle" checked>
+            <span>
+                <i class="fas fa-sun toggle-icon sun-icon"></i>
+                <i class="fas fa-moon toggle-icon moon-icon"></i>
+            </span>
         </label>
     </header>
 
@@ -318,8 +354,7 @@
         });
 
         // Replace with your direct download link
-        const audioUrl = 'https://cors-anywhere.herokuapp.com/https://pub-917443ca83a94694bc49ac75707aa2a0.r2.dev/The%20Eulogy.wav';
-;
+        const audioUrl = 'https://www.mitchelld.net/The%20Eulogy.wav';
 
         // Load audio file
         wavesurfer.load(audioUrl);
