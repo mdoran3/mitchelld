@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wavesurfer Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/wavesurfer.js@7/dist/wavesurfer.min.js"></script>
+</head>
+<body>
+    <div id="waveform"></div>
+    <button id="playButton">Play</button>
+    <button id="pauseButton">Pause</button>
+
+    <script>
+        const wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            waveColor: 'DarkSeaGreen',
+            progressColor: '#4caf50',
+            height: 100,
+            barWidth: 3
+        });
+
+        const audioUrl = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+        wavesurfer.load(audioUrl);
+
+        document.getElementById('playButton').addEventListener('click', () => wavesurfer.play());
+        document.getElementById('pauseButton').addEventListener('click', () => wavesurfer.pause());
+    </script>
+</body>
+</html>
